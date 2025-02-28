@@ -1,0 +1,77 @@
+[
+  {
+    "id": "1",
+    "name": "Double Die",
+    "description": "This is tractor PTO-operated, movable clay brick-making machine is a highly efficient solution for producing large quantities of bricks with minimal manpower. Built for convenience and mobility, this machine is perfect for projects requiring high output.",
+    "price": 2000000,
+    "images": [
+      "/machines/product2.png"
+    ],
+    "specs": {
+      "Operational Requirements": [
+        "Requires a 55 to 60 HP tractor to operate efficiently",
+        "Minimal manpower required (4 to 5 workers)"
+      ],
+      "Land Requirements": [
+        "Requires a 200 to 250-meter length and 50 to 60-meter width of flat land for operation"
+      ],
+      "Production Capacity": [
+        "Capable of producing 4,000 to 6,000 bricks per hour"
+      ],
+      "Material Requirements": [
+        "Requires stone-free mud only to ensure smooth operation and consistent brick quality"
+      ]
+    }
+  },
+  {
+    "id": "2",
+    "name": "Triple Die",
+    "description": "This is tractor PTO-operated, movable clay brick-making machine is a highly efficient solution for producing large quantities of bricks with minimal manpower. Built for convenience and mobility, this machine is perfect for projects requiring high output.",
+    "price": 2600000,
+    "images": [
+      "/machines/Triplediefront.jpg",
+      "/machines/Tripledieside1.jpg"
+    ],
+    "specs": {
+      "Operational Requirements": [
+        "Requires a 55 to 60 HP tractor to operate efficiently",
+        "Minimal manpower required (only 2 to 3 workers)"
+      ],
+      "Land Requirements": [
+        "Requires a 200 to 250-meter length and 50 to 60-meter width of flat land for operation"
+      ],
+      "Production Capacity": [
+        "Capable of producing 6,000 to 9,000 bricks per hour"
+      ],
+      "Material Requirements": [
+        "Requires stone-free mud only to ensure smooth operation and consistent brick quality"
+      ]
+    }
+  },
+  {
+    "id": "3",
+    "name": "Five Die",
+    "description": "This is tractor PTO-operated, movable clay brick-making machine is a highly efficient solution for producing large quantities of bricks with minimal manpower. Built for convenience and mobility, this machine is perfect for projects requiring high output.",
+    "price": 4200000,
+    "images": [
+      "/machines/product1.png",
+      "/machines/product2.png",
+      "/machines/product3.png"
+    ],
+    "specs": {
+      "Operational Requirements": [
+        "Requires a 60+ HP tractor to operate efficiently",
+        "Minimal manpower required (only 2 workers)"
+      ],
+      "Land Requirements": [
+        "Requires a 250 to 300-meter length and 60 to 70-meter width of flat land for operation"
+      ],
+      "Production Capacity": [
+        "Capable of producing 12,000 to 14,000 bricks per hour"
+      ],
+      "Material Requirements": [
+        "Requires stone-free mud only to ensure smooth operation and consistent brick quality"
+      ]
+    }
+  }
+]

@@ -1,101 +1,161 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React, { useState, Suspense } from "react";
+import dynamic from "next/dynamic";
+import { motion, AnimatePresence } from "framer-motion";
+import HeroSection from "./heroSection/page";
+import ProductSection from "./productsection/page";
+import AboutUsSection from "./aboutussection/page";
+import TestimonialSection from "./testimonialSection/page";
+import ServiceCenterSection from "./servicecentersection/page";
+import FaqsSection from "./faqssection/page";
+import { PhoneCall, MessageCircle } from "lucide-react";
+
+// Dynamically import ChatBot and GrowthGraph with SSR disabled
+const ChatBot = dynamic(() => import("@components/ChatBot/ChatBot"), {
+  ssr: false,
+  loading: () => <div className="p-4 text-center">Loading chat...</div>,
+});
+const GrowthGraph = dynamic(() => import("./growthgraphsection/page"), {
+  ssr: false,
+  loading: () => <div className="p-4 text-center">Loading graph...</div>,
+});
+
+// Motion variants for smooth animations
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const buttonVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } },
+};
+
+// Modern Divider Component using an SVG wave
+const Divider = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7 }}
+    className="my-12"
+  >
+    <svg className="w-full h-6" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="#e2e8f0" d="M0,256L1440,96L1440,320L0,320Z"></path>
+    </svg>
+  </motion.div>
+);
+
+const HomePage = () => {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <motion.div variants={containerVariants} initial="hidden" animate="visible">
+      {/* Hero Section */}
+      <motion.div variants={sectionVariants}>
+        <HeroSection />
+      </motion.div>
+      <Divider />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Product Section */}
+      <motion.div variants={sectionVariants}>
+        <ProductSection />
+      </motion.div>
+      <Divider />
+
+      {/* About Us Section */}
+      <motion.div variants={sectionVariants}>
+        <AboutUsSection />
+      </motion.div>
+      <Divider />
+
+      {/* Testimonial Section */}
+      <motion.div variants={sectionVariants}>
+        <TestimonialSection />
+      </motion.div>
+      <Divider />
+
+      {/* Service Center Section */}
+      <motion.div variants={sectionVariants}>
+        <ServiceCenterSection />
+      </motion.div>
+      <Divider />
+
+      {/* FAQ Section */}
+      <motion.div variants={sectionVariants}>
+        <FaqsSection />
+      </motion.div>
+      <Divider />
+
+      {/* Year-on-Year Growth Section */}
+      <motion.div variants={sectionVariants}>
+        <Suspense fallback={<div className="p-4 text-center">Loading growth graph...</div>}>
+          <GrowthGraph />
+        </Suspense>
+      </motion.div>
+      <Divider />
+
+      {/* ChatBot with AnimatePresence for smooth transitions */}
+      <AnimatePresence>
+        {isChatOpen && (
+          <motion.div
+            variants={sectionVariants}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            key="chatbot"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <Suspense fallback={<div className="p-4 text-center">Loading chat...</div>}>
+              <ChatBot onClose={() => setIsChatOpen(false)} />
+            </Suspense>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Customer Support Buttons (only visible when ChatBot is closed) */}
+      {!isChatOpen && (
+        <motion.div
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col space-y-3"
+          variants={buttonVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Call Support Button */}
+          <motion.a
+            href="tel:+1234567890"
+            className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-teal-900 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300"
+            aria-label="Call support"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            <PhoneCall className="w-6 h-6" />
+            <span className="hidden sm:inline font-semibold text-lg">Call Support</span>
+          </motion.a>
+
+          {/* Chat Support Button */}
+          <motion.button
+            onClick={() => setIsChatOpen(true)}
+            className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300"
+            aria-label="Open chat support"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <MessageCircle className="w-6 h-6" />
+            <span className="hidden sm:inline font-semibold text-lg">Chat Support</span>
+          </motion.button>
+        </motion.div>
+      )}
+    </motion.div>
   );
-}
+};
+
+export default HomePage;

@@ -7,15 +7,28 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Fixed dark mode colors - removed media query */
+[data-theme='dark'] {
+  --background: #0a0a0a;  /* Darker shade for better contrast */
+  --foreground: #f5f5f5;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', Helvetica, sans-serif;  /* Ensure proper fallback */
+  transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
+}
+
+/* Add these to prevent extension-induced layout shifts */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Extension-specific overrides */
+[data-grammarly-shadow-root],
+[grammarly-shadow-root] {
+  display: none !important;
 }
