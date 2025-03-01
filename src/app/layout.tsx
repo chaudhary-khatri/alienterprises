@@ -21,17 +21,27 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <>
       <html lang="en">
         <Head>
-          <link rel="icon" href="/favicon.ico" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-          <link rel="apple-touch-icon" href="/favicon.png" />
+          {/* Updated favicon paths */}
+          <link rel="icon" href="/favicon_io/favicon.ico" />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon_io/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon_io/favicon-16x16.png"
+          />
+          <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png" />
+          <meta name="theme-color" content="#ffffff" />
           <title>Ali Enterprises</title>
         </Head>
         <body className="min-h-screen bg-background text-foreground">
           <Navbar />
-          <main className="pt-10">
-            {isClient ? children : null}
-          </main>
+          <main className="pt-10">{isClient ? children : null}</main>
           <Footer />
         </body>
       </html>

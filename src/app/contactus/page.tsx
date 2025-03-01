@@ -60,8 +60,8 @@ const ContactUsPage = () => {
           src="https://docs.google.com/forms/d/e/1FAIpQLScljzoFT096fbd8XtHv9JZqkZ6Lsiqp3zNJPfI-NISZg_wtjg/viewform?embedded=true"
           className="w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px]"
           frameBorder="0"
-          marginHeight="0"
-          marginWidth="0"
+          marginHeight={0}
+          marginWidth={0}
           title="Contact Form"
         >
           Loading…

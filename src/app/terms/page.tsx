@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { ArrowUp, List } from 'lucide-react';
 
 export default function TermsPage() {
     const [isTocOpen, setIsTocOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('');
 
-    const sections = [
+    // Memoize sections to avoid recreating the array on each render
+    const sections = useMemo(() => [
         { id: 'pricing-taxes', title: '1. Pricing & Taxes' },
         { id: 'delivery-payment', title: '2. Delivery & Payment' },
         { id: 'dispatch-insurance', title: '3. Dispatch & Insurance' },
@@ -16,7 +17,7 @@ export default function TermsPage() {
         { id: 'erection-commissioning', title: '6. Erection & Commissioning' },
         { id: 'warranty', title: '7. Warranty' },
         { id: 'jurisdiction', title: '8. Jurisdiction' },
-    ];
+    ], []);
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -33,7 +34,7 @@ export default function TermsPage() {
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [sections]);
 
     return (
         <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 px-4 py-6 md:px-8 lg:px-12">
@@ -114,7 +115,7 @@ export default function TermsPage() {
                 <div className="flex-1 p-6 md:p-8 lg:p-12">
                     <header className="mb-8">
                         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 pb-4 border-b-2 border-blue-600">
-                            Terms & Conditions
+                            Terms &amp; Conditions
                         </h1>
                         <div className="mt-4 text-sm text-gray-500">
                             <p>Effective: {new Date().toLocaleDateString()}</p>
@@ -210,15 +211,15 @@ export default function TermsPage() {
                     <Section id="inspection" title="5. Inspection">
                         <div className="space-y-4">
                             <p>
-                                Purchaser must conduct inspection within 15 days of notification at Seller's premises,
-                                at Purchaser's expense. Failure to inspect within stipulated period constitutes waiver
+                                Purchaser must conduct inspection within 15 days of notification at Seller&apos;s premises,
+                                at Purchaser&apos;s expense. Failure to inspect within stipulated period constitutes waiver
                                 of inspection rights.
                             </p>
                             <div className="bg-yellow-50 p-4 border-l-4 border-yellow-400">
                                 <strong>Inspection Limitations:</strong>
                                 <ul className="list-disc pl-6 mt-2">
                                     <li>Only visual inspection permitted</li>
-                                    <li>No-load tests conducted at manufacturer's discretion</li>
+                                    <li>No-load tests conducted at manufacturer&apos;s discretion</li>
                                 </ul>
                             </div>
                         </div>
@@ -231,7 +232,7 @@ export default function TermsPage() {
                                 <li>
                                     Customer provides:
                                     <ul className="list-circle pl-6 mt-2">
-                                        <li>Lodging & boarding for technicians</li>
+                                        <li>Lodging &amp; boarding for technicians</li>
                                         <li>Local transportation</li>
                                         <li>All necessary tools/equipment</li>
                                         <li>Skilled/unskilled labor</li>

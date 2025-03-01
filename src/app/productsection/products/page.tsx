@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUp, List, ZoomIn, ZoomOut } from "lucide-react";
+import { ZoomIn, ZoomOut } from "lucide-react"; // Removed ArrowUp and List
 
 interface Product {
   id: string;
@@ -37,17 +37,18 @@ export default function ProductsList() {
       if (!response.ok)
         throw new Error(`HTTP error! status: ${response.status}`);
 
-      const data = await response.json();
+      // Cast the response data as Product[]
+      const data: Product[] = await response.json();
       // Validate product data with price fallback
-      const validatedData = data.map((product: Product) => ({
+      const validatedData = data.map((product) => ({
         ...product,
         price: typeof product.price === "number" ? product.price : 0,
         images:
           product.images?.length > 0 ? product.images : ["/default-image.jpg"],
       }));
       setProducts(validatedData);
-    } catch (err: any) {
-      if (err.name === "AbortError") return;
+    } catch (err: unknown) {
+      if (err instanceof Error && err.name === "AbortError") return;
       console.error("Error fetching products:", err);
       setError(err instanceof Error ? err.message : "Failed to load products.");
     } finally {
@@ -60,8 +61,10 @@ export default function ProductsList() {
   }, [fetchProducts]);
 
   const handleBookNow = (product: Product) => {
+    void product;
     window.open(GOOGLE_FORM_URL, "_blank", "noopener,noreferrer");
   };
+    
 
   if (loading) return <SkeletonLoader count={SKELETON_ITEMS} />;
   if (error) return <ErrorState error={error} onRetry={fetchProducts} />;

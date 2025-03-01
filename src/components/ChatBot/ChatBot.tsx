@@ -22,7 +22,7 @@ interface Option {
 }
 
 const COMPANY_NAME = "Ali Enterprises";
-const STORE_ADDRESS = "123 Industrial Zone, Manufacturing City, Country";
+// Removed STORE_ADDRESS as it is not used
 
 const conversationConfig: Record<string, ChatNode> = {
   root: {
@@ -163,7 +163,7 @@ const ChatBot = ({ onClose }: { onClose: () => void }) => {
   const [currentNode, setCurrentNode] = useState<ChatNode>(conversationConfig.root);
   const [isBotTyping, setIsBotTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

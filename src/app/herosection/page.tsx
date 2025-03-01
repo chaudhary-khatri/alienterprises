@@ -1,8 +1,14 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { PlayCircleIcon, PauseCircleIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+
+// Define a union type for slides.
+type Slide =
+  | { type: "video"; src: string; thumbnail: string; alt: string }
+  | { type: "image"; src: string; alt: string }
+  | { type: "text"; title: string; description: string };
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -13,7 +19,8 @@ const HeroSection = () => {
   const interactionTimer = useRef<NodeJS.Timeout | null>(null);
   const autoResumeTimer = useRef<NodeJS.Timeout | null>(null);
 
-  const slides = [
+  // Memoize slides with the proper type.
+  const slides = useMemo<Slide[]>(() => [
     { 
       type: "video", 
       src: "/videos/Intro.mov",
@@ -35,18 +42,18 @@ const HeroSection = () => {
       title: "Special Offer: Get 20% Off!",
       description: "Limited time offer on our best-selling products.",
     },
-  ];
+  ], []);
 
-  // Handle slide changes and video state
+  // Pause video when the current slide is not a video.
   useEffect(() => {
-    const currentSlideIsVideo = slides[currentSlide].type === 'video';
+    const currentSlideIsVideo = slides[currentSlide].type === "video";
     if (!currentSlideIsVideo && videoRef.current) {
       videoRef.current.pause();
       setIsPlaying(false);
     }
   }, [currentSlide, slides]);
 
-  // Auto-slide functionality
+  // Auto-slide functionality.
   useEffect(() => {
     if (autoSlide) {
       const interval = setInterval(() => {
@@ -56,7 +63,6 @@ const HeroSection = () => {
     }
   }, [autoSlide, slides.length]);
 
-  // Reset interaction timers
   const resetInteractionTimer = () => {
     setAutoSlide(false);
     if (autoResumeTimer.current) clearTimeout(autoResumeTimer.current);
@@ -65,7 +71,7 @@ const HeroSection = () => {
     }, 18000);
   };
 
-  // Video control functions
+  // Video control functions.
   const toggleVideo = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -81,7 +87,6 @@ const HeroSection = () => {
     resetInteractionTimer();
   };
 
-  // Control visibility timeout
   const handleVideoInteraction = () => {
     setShowControls(true);
     if (interactionTimer.current) clearTimeout(interactionTimer.current);
@@ -243,7 +248,7 @@ const HeroSection = () => {
         </address>
 
         <a
-          href="/contact"
+          href="/contactus"
           className="inline-block px-8 py-3 bg-amber-400 text-teal-900 font-semibold rounded-full shadow-md hover:bg-amber-300 transition-colors"
         >
           Contact Us

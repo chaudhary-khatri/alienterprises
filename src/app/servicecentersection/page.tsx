@@ -27,13 +27,10 @@ const MapController = React.memo(({ coordinates }: { coordinates: [number, numbe
   return null;
 });
 
-// Set displayName for Memoized components to satisfy ESLint rule
 MapController.displayName = "MapController";
 
 const MemoizedMap = React.memo(({ selectedCoordinates }: { selectedCoordinates: [number, number] | null }) => (
-  <div
-    className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[400px] rounded-2xl overflow-hidden shadow-lg"
-  >
+  <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[400px] rounded-2xl overflow-hidden shadow-lg">
     <MapContainer
       center={[22.5937, 78.9629]} // Center of India
       zoom={4}
@@ -75,7 +72,6 @@ const MemoizedMap = React.memo(({ selectedCoordinates }: { selectedCoordinates: 
   </div>
 ));
 
-// Set displayName for Memoized components to satisfy ESLint rule
 MemoizedMap.displayName = "MemoizedMap";
 
 const ServiceCentersSection = () => {
@@ -106,15 +102,16 @@ const ServiceCentersSection = () => {
                     handleCityClick(
                       center.city,
                       Array.isArray(center.coordinates) && center.coordinates.length === 2
-                        ? (center.coordinates as [number, number])  // Ensure coordinates is a valid tuple [number, number]
-                        : [0, 0],  // Fallback to default coordinates [0, 0] if not valid
+                        ? (center.coordinates as [number, number])
+                        : [0, 0],
                       center.address
                     )
                   }
-                  className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${selectedCity === center.city
+                  className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    selectedCity === center.city
                       ? "bg-teal-700 text-white scale-105"
                       : "bg-teal-100 text-teal-700 hover:bg-teal-200 hover:scale-105"
-                    }`}
+                  }`}
                 >
                   {center.city}
                 </button>

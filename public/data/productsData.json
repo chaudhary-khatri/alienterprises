@@ -5,7 +5,7 @@
     "description": "This is tractor PTO-operated, movable clay brick-making machine is a highly efficient solution for producing large quantities of bricks with minimal manpower. Built for convenience and mobility, this machine is perfect for projects requiring high output.",
     "price": 2000000,
     "images": [
-      "/machines/product2.png"
+      "/machines/product2.jpg"
     ],
     "specs": {
       "Operational Requirements": [
@@ -54,9 +54,9 @@
     "description": "This is tractor PTO-operated, movable clay brick-making machine is a highly efficient solution for producing large quantities of bricks with minimal manpower. Built for convenience and mobility, this machine is perfect for projects requiring high output.",
     "price": 4200000,
     "images": [
-      "/machines/product1.png",
-      "/machines/product2.png",
-      "/machines/product3.png"
+      "/machines/product1.jpg",
+      "/machines/product2.jpg",
+      "/machines/product3.jpg"
     ],
     "specs": {
       "Operational Requirements": [

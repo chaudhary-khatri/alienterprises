@@ -3,10 +3,10 @@
 import React, { useState, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import HeroSection from "./heroSection/page";
+import HeroSection from "./herosection/page";
 import ProductSection from "./productsection/page";
 import AboutUsSection from "./aboutussection/page";
-import TestimonialSection from "./testimonialSection/page";
+import TestimonialSection from "./testimonialsection/page";
 import ServiceCenterSection from "./servicecentersection/page";
 import FaqsSection from "./faqssection/page";
 import { PhoneCall, MessageCircle } from "lucide-react";
@@ -16,6 +16,7 @@ const ChatBot = dynamic(() => import("@components/ChatBot/ChatBot"), {
   ssr: false,
   loading: () => <div className="p-4 text-center">Loading chat...</div>,
 });
+
 const GrowthGraph = dynamic(() => import("./growthgraphsection/page"), {
   ssr: false,
   loading: () => <div className="p-4 text-center">Loading graph...</div>,
