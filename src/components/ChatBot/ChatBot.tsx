@@ -22,7 +22,6 @@ interface Option {
 }
 
 const COMPANY_NAME = "Ali Enterprises";
-// Removed STORE_ADDRESS as it is not used
 
 const conversationConfig: Record<string, ChatNode> = {
   root: {
@@ -56,37 +55,34 @@ const conversationConfig: Record<string, ChatNode> = {
       {
         text: "Get store details",
         action: () =>
-          window.open("https://maps.app.goo.gl/QgT3y8VGmt9Sb3F66"),
+          window.open("https://maps.app.goo.gl/QgT3y8VGmt9Sb3F66", "_blank"),
       },
     ],
   },
   "machine-models": {
     id: "machine-models",
-    text: "We Currently offer the three Brick Making machine models: Single Die, Double die, and Triple Die. Which model would you like to know more about?",
+    text: "We offer the 3 Brick Making machine models: 1. Single Die, 2. Double die, and 3. Triple Die. Which model would you like to know more about?",
     options: [
-      {
-        text: "Single Die Machine",
-        action: () =>
-          (window.location.href =
-            "/productsection/products?model=model1"),
-      },
       {
         text: "Double Die Machine",
         action: () =>
-          (window.location.href =
-            "/productsection/products?model=model2"),
+          (window.location.href = "/productsection/products?model=model1"),
       },
       {
         text: "Triple Die Machine",
         action: () =>
-          (window.location.href =
-            "/productsection/products?model=model3"),
+          (window.location.href = "/productsection/products?model=model2"),
+      },
+      {
+        text: "Five Die Machine",
+        action: () =>
+          (window.location.href = "/productsection/products?model=model3"),
       },
     ],
   },
   "specific-parts": {
     id: "specific-parts",
-    text: "Please select the Preferred option in which you are comfortable buying parts.",
+    text: "Please select the preferred option in which you are comfortable buying parts.",
     options: [
       {
         text: "WhatsApp",
@@ -121,7 +117,7 @@ const conversationConfig: Record<string, ChatNode> = {
   },
   "part-help": {
     id: "part-help",
-    text: "Ok, Do you need assistant in anything else?",
+    text: "Ok, do you need assistance with anything else?",
     options: [
       { text: "Yes, I need Assistance", nextNodeId: "general-questions" },
       { text: "Not now", action: () => (window.location.href = "/") },
@@ -150,7 +146,7 @@ const conversationConfig: Record<string, ChatNode> = {
   },
   "purchase-parts": {
     id: "purchase-parts",
-    text: "You can directly buy the spare parts from us. Would you like to proceed to buy spare parts ?",
+    text: "You can directly buy the spare parts from us. Would you like to proceed to buy spare parts?",
     options: [
       { text: "Yes, I want to Buy.", nextNodeId: "specific-parts" },
       { text: "Not now", nextNodeId: "part-help" },
@@ -175,7 +171,6 @@ const ChatBot = ({ onClose }: { onClose: () => void }) => {
 
   useEffect(() => {
     addBotMessage(currentNode.text);
-
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
@@ -201,12 +196,10 @@ const ChatBot = ({ onClose }: { onClose: () => void }) => {
 
   const handleOptionSelect = (option: Option) => {
     addUserMessage(option.text);
-
     if (option.action) {
       timeoutRef.current = setTimeout(option.action, 1500);
       return;
     }
-
     if (option.nextNodeId) {
       timeoutRef.current = setTimeout(() => {
         const nextNode = conversationConfig[option.nextNodeId!];
@@ -216,37 +209,43 @@ const ChatBot = ({ onClose }: { onClose: () => void }) => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 mx-4 mb-4 sm:bottom-4 sm:right-4 sm:left-auto w-full max-w-md bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden animate-slide-up">
-      <div className="flex items-center justify-between p-4 bg-teal-600 text-white">
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed bottom-0 left-0 right-0 mx-4 mb-4 sm:bottom-4 sm:right-4 sm:left-auto w-full sm:max-w-md bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden animate-slide-up"
+    >
+      <div className="flex items-center justify-between p-3 sm:p-4 bg-teal-600 text-white">
         <div className="flex items-center space-x-2">
           <MessageCircle className="w-5 h-5" />
-          <h3 className="font-semibold">{COMPANY_NAME} Support</h3>
+          <h3 className="font-semibold text-sm sm:text-base">
+            {COMPANY_NAME} Support
+          </h3>
         </div>
         <button
           onClick={onClose}
-          className="p-1 hover:bg-teal-700 rounded-full transition-colors"
+          className="p-1 sm:p-2 hover:bg-teal-700 rounded-full transition-colors"
           aria-label="Close chat"
         >
           <X className="w-5 h-5" />
         </button>
       </div>
 
-      <div className="p-4 overflow-y-auto bg-gray-50 h-[50vh] sm:h-96">
-        <div className="space-y-4">
+      <div className="p-3 sm:p-4 overflow-y-auto bg-gray-50 h-[40vh] sm:h-96">
+        <div className="space-y-3">
           {messages.map((message) => (
             <div
               key={message.timestamp}
               className={`flex ${message.isBot ? "justify-start" : "justify-end"}`}
             >
               <div
-                className={`max-w-[80%] p-3 rounded-lg ${
+                className={`max-w-[80%] p-2 rounded-lg ${
                   message.isBot
                     ? "bg-white text-gray-800 border border-gray-200"
                     : "bg-teal-600 text-white"
                 }`}
               >
-                <p className="text-sm">{message.content}</p>
-                <span className="text-xs mt-1 block opacity-70">
+                <p className="text-xs sm:text-sm">{message.content}</p>
+                <span className="text-[0.6rem] sm:text-xs mt-1 block opacity-70">
                   {new Date(message.timestamp).toLocaleTimeString([], {
                     hour: "2-digit",
                     minute: "2-digit",
@@ -257,27 +256,27 @@ const ChatBot = ({ onClose }: { onClose: () => void }) => {
           ))}
 
           {isBotTyping && (
-            <div className="flex items-center space-x-2 text-gray-500">
+            <div className="flex items-center space-x-1 sm:space-x-2 text-gray-500">
               <div className="flex space-x-1">
                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-100"></div>
                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-200"></div>
               </div>
-              <span className="text-sm">Typing...</span>
+              <span className="text-xs">Typing...</span>
             </div>
           )}
           <div ref={messagesEndRef} />
         </div>
       </div>
 
-      <div className="p-4 border-t border-gray-200 bg-white">
+      <div className="p-3 sm:p-4 border-t border-gray-200 bg-white">
         <div className="grid grid-cols-1 gap-2">
           {currentNode.options?.map((option, index) => (
             <button
               key={index}
               onClick={() => handleOptionSelect(option)}
               disabled={isBotTyping}
-              className="text-left p-3 text-sm bg-teal-50 text-teal-800 rounded-lg hover:bg-teal-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="text-left p-2 sm:p-3 text-xs sm:text-sm bg-teal-50 text-teal-800 rounded-lg hover:bg-teal-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               aria-label={`Select option: ${option.text}`}
             >
               {option.text}

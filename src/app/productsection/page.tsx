@@ -25,22 +25,23 @@ const ProductSection = () => {
   const resumeTimerRef = useRef<NodeJS.Timeout | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  // Fetch products data
+  // Fetch products data (corrected file name case)
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("/data/ProductsData.json");
+        const response = await fetch("/data/productsData.json");
         if (!response.ok) throw new Error("Network response was not ok");
         const data: RawProduct[] = await response.json();
-        
+
         const transformedProducts: Product[] = data.map((product) => ({
           name: product.name,
-          image: product.images?.length > 0 
-            ? product.images[0] 
-            : "/machines/default.png",
-          description: product.description || ""
+          image:
+            product.images?.length > 0
+              ? product.images[0]
+              : "/machines/default.png",
+          description: product.description || "",
         }));
-        
+
         setProducts(transformedProducts);
       } catch (error) {
         console.error("Failed to fetch products:", error);
@@ -74,7 +75,7 @@ const ProductSection = () => {
     setIsAutoSlidingPaused(true);
     if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
     resumeTimerRef.current = setTimeout(() => setIsAutoSlidingPaused(false), 15000);
-  }, []); // products.length not needed if stable after initial load
+  }, []);
 
   // Pause auto sliding on hover and resume after a delay
   const handleMouseEnter = () => {
