@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ZoomIn, ZoomOut } from "lucide-react"; // Removed ArrowUp and List
+import { ZoomIn, ZoomOut } from "lucide-react";
 
 interface Product {
   id: string;
@@ -23,8 +24,11 @@ const GOOGLE_FORM_URL =
 
 export default function ProductsList() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
+  const searchParams = useSearchParams();
+  const modelId = searchParams.get("model");
 
   const fetchProducts = useCallback(async () => {
     try {
@@ -37,9 +41,7 @@ export default function ProductsList() {
       if (!response.ok)
         throw new Error(`HTTP error! status: ${response.status}`);
 
-      // Cast the response data as Product[]
       const data: Product[] = await response.json();
-      // Validate product data with price fallback
       const validatedData = data.map((product) => ({
         ...product,
         price: typeof product.price === "number" ? product.price : 0,
@@ -60,11 +62,19 @@ export default function ProductsList() {
     fetchProducts();
   }, [fetchProducts]);
 
-  const handleBookNow = (product: Product) => {
-    void product;
+  useEffect(() => {
+    if (modelId && products.length > 0) {
+      const filtered = products.filter((product) => product.id === modelId);
+      setFilteredProducts(filtered);
+    } else {
+      setFilteredProducts(products);
+    }
+  }, [modelId, products]);
+
+  // Removed the unused 'product' parameter from handleBookNow
+  const handleBookNow = () => {
     window.open(GOOGLE_FORM_URL, "_blank", "noopener,noreferrer");
   };
-    
 
   if (loading) return <SkeletonLoader count={SKELETON_ITEMS} />;
   if (error) return <ErrorState error={error} onRetry={fetchProducts} />;
@@ -72,24 +82,25 @@ export default function ProductsList() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-4xl font-bold text-gray-900 mb-12 text-center">
-        Our <span className="text-teal-600">Machinery</span>
+        {modelId ? "Product Details" : "Our Machinery"}
+        {!modelId && <span className="text-teal-600"> Machinery</span>}
       </h1>
 
       <div className="grid grid-cols-1 gap-12">
-        {products.length === 0 ? (
+        {filteredProducts.length === 0 ? (
           <div className="col-span-full text-center py-16">
             <div className="text-gray-500 text-xl mb-4">
-              🚜 No products available
+              {modelId ? "🚜 Product not found" : "🚜 No products available"}
             </div>
             <button
               onClick={fetchProducts}
               className="text-teal-600 hover:text-teal-700 font-medium"
             >
-              Refresh listings
+              {modelId ? "View All Products" : "Refresh listings"}
             </button>
           </div>
         ) : (
-          products.map((product) => (
+          filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -105,8 +116,13 @@ export default function ProductsList() {
           className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-teal-600 to-teal-500 text-white text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
           prefetch
         >
-          Explore Full Product Range
-          <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {modelId ? "View All Products" : "Explore Full Product Range"}
+          <svg
+            className="w-5 h-5 ml-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -125,7 +141,7 @@ const ProductCard = ({
   onBookNow,
 }: {
   product: Product;
-  onBookNow: (product: Product) => void;
+  onBookNow: () => void;
 }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -146,10 +162,10 @@ const ProductCard = ({
   };
 
   return (
-    <div className="group rounded-2xl border border-gray-300 shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 ease-out">
+    <div className="group rounded-xl border border-gray-300 shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 ease-out">
       <div className="flex flex-col lg:flex-row">
-        <div className="relative lg:w-1/2 xl:w-2/5 h-72 lg:h-96 rounded-lg border bg-gray-100">
-          <div className="relative h-full w-full rounded-xl overflow-hidden">
+        <div className="relative lg:w-1/2 xl:w-2/5 h-72 lg:h-96 rounded-2xl border bg-gray-300">
+          <div className="relative h-full w-full rounded-2xl overflow-hidden">
             <Image
               src={images[activeImageIndex]}
               alt={`${product.name} - Image ${activeImageIndex + 1}`}
@@ -172,14 +188,14 @@ const ProductCard = ({
                 aria-label="Zoom in"
                 className="bg-white/80 p-2 rounded-full shadow-sm hover:bg-white transition-colors"
               >
-                <ZoomIn size={20} />
+                <ZoomIn size={30} />
               </button>
               <button
                 onClick={handleZoomOut}
                 aria-label="Zoom out"
                 className="bg-white/80 p-2 rounded-full shadow-sm hover:bg-white transition-colors"
               >
-                <ZoomOut size={20} />
+                <ZoomOut size={30} />
               </button>
             </div>
 
@@ -249,9 +265,9 @@ const ProductCard = ({
                     setIsImageLoaded(false);
                     setActiveImageIndex(index);
                   }}
-                  className={`w-12 h-12 rounded-lg border-2 overflow-hidden transition-all ${
+                  className={`w-14 h-14 rounded-lg border-2 overflow-hidden transition-all ${
                     index === activeImageIndex
-                      ? "border-teal-500 scale-110"
+                      ? "border-teal-600 scale-110"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
@@ -320,7 +336,7 @@ const ProductCard = ({
           </div>
 
           <button
-            onClick={() => onBookNow(product)}
+            onClick={onBookNow}
             className="mt-auto w-full lg:w-3/4 xl:w-1/2 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 px-8 py-4 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
             aria-label={`Book now for ${product.name}`}
           >

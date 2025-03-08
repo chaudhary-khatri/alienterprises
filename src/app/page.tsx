@@ -132,7 +132,7 @@ const HomePage = () => {
         >
           {/* Call Support Button */}
           <motion.a
-            href="tel:+1234567890"
+            href="tel:+919756300040"
             className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-teal-900 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300"
             aria-label="Call support"
             whileHover={{ scale: 1.05 }}

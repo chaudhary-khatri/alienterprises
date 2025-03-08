@@ -13,39 +13,144 @@ type Testimonial = {
 
 const testimonials: Testimonial[] = [
   {
-    name: "John Doe",
+    name: "Param Hassan Dubey",
     image: "/profile 1.png",
     quote:
-      "Ali Enterprises provided us with the most efficient and reliable construction machines. Our projects are always ahead of schedule thanks to their top-notch equipment!",
-    role: "CEO, XYZ Construction",
+      "The brick making machine from Ali Enterprises has transformed our operations. It’s reliable and has boosted our production tremendously. I’m really pleased with the quality and support.",
+    role: "MD",
   },
   {
-    name: "Jane Smith",
+    name: "Pramod",
     image: "/profile 2.png",
     quote:
-      "The quality and efficiency of Ali Enterprises' equipment have been incredible. We've been using their products for years, and the performance speaks for itself!",
-    role: "Project Manager, ABC Builders",
+      "Ali Enterprises' brick machine is a real game changer. It runs smoothly, slashes production time, and the service is excellent.",
+    role: "Owner",
   },
   {
-    name: "Michael Lee",
+    name: "Ajay Shah",
     image: "/profile 3.png",
     quote:
-      "Their equipment is second to none. We rely on Ali Enterprises for all of our construction needs, and they've consistently exceeded our expectations!",
-    role: "Construction Supervisor, LMN Corp",
+      "We installed their brick making machine last year and it consistently delivers high-quality bricks. The machine is robust and maintenance is hassle-free.",
+    role: "MD",
   },
   {
-    name: "Sara Wilson",
+    name: "Pintu Singh",
     image: "/profile 4.png",
     quote:
-      "Working with Ali Enterprises was a game changer for our business. Their machines have helped us increase productivity and complete projects ahead of schedule.",
-    role: "Founder, Wilson Group",
+      "The brick making equipment is very efficient—it produces top-notch bricks and saves us loads of time. I truly appreciate the friendly, professional service.",
+    role: "Owner",
   },
   {
-    name: "David Brown",
+    name: "Server Ahmed",
     image: "/profile 5.png",
     quote:
-      "Ali Enterprises has provided us with exceptional machinery. Their customer service and after-sales support are unmatched.",
-    role: "Manager, Brown Construction",
+      "Our production has improved immensely with the brick making machine from Ali Enterprises. It’s dependable and the after-sales support is commendable.",
+    role: "MD",
+  },
+  {
+    name: "Adil Khan",
+    image: "/profile 6.png",
+    quote:
+      "I am very satisfied with the brick making machine. It delivers consistent performance, and the team at Ali Enterprises is always ready to help.",
+    role: "Owner",
+  },
+  {
+    name: "Dipu Singh",
+    image: "/profile 7.png",
+    quote:
+      "The machine has made our brick production much easier and more efficient. Its durability and performance are truly impressive.",
+    role: "MD",
+  },
+  {
+    name: "Rajesh Singh",
+    image: "/profile 8.png",
+    quote:
+      "Ali Enterprises offers a brick making machine that stands out in quality and efficiency. It has streamlined our operations, and the support is top-notch.",
+    role: "Owner",
+  },
+  {
+    name: "Rajesh Kumar",
+    image: "/profile 9.png",
+    quote:
+      "The brick machine is reliable and has significantly improved our productivity. I would highly recommend Ali Enterprises for quality equipment.",
+    role: "MD",
+  },
+  {
+    name: "Ashish Singh",
+    image: "/profile 10.png",
+    quote:
+      "We’ve been using the brick making machine from Ali Enterprises for a while now and it never disappoints. Its performance is excellent.",
+    role: "Owner",
+  },
+  {
+    name: "Servicing",
+    image: "/profile 11.png",
+    quote:
+      "The efficiency of the brick making machine is impressive. It has reduced downtime and increased output. Great service and support all around.",
+    role: "MD",
+  },
+  {
+    name: "Suryakant",
+    image: "/profile 12.png",
+    quote:
+      "Our brick production has become much more consistent thanks to this machine. It’s efficient and the support team is very responsive.",
+    role: "Owner",
+  },
+  {
+    name: "ID rish",
+    image: "/profile 13.png",
+    quote:
+      "The machine has enhanced our brick making process. It’s easy to operate and maintain, and the quality of bricks is superb.",
+    role: "MD",
+  },
+  {
+    name: "Ankit Singh",
+    image: "/profile 14.png",
+    quote:
+      "I highly recommend the brick making machine from Ali Enterprises. It’s a solid investment that has boosted our production efficiency.",
+    role: "Owner",
+  },
+  {
+    name: "Sudarshan single",
+    image: "/profile 15.png",
+    quote:
+      "This brick making machine is very effective. It runs smoothly and has significantly increased our production rate. I’m very pleased with the results.",
+    role: "MD",
+  },
+  {
+    name: "Balwant Singh",
+    image: "/profile 16.png",
+    quote:
+      "I am impressed with the quality of the brick machine. It has boosted our output and the service from Ali Enterprises is commendable.",
+    role: "Owner",
+  },
+  {
+    name: "Anil Kumar",
+    image: "/profile 17.png",
+    quote:
+      "The brick making machine is reliable and performs exceptionally well. It has reduced our workload and increased efficiency across the board.",
+    role: "MD",
+  },
+  {
+    name: "Harpal Pannu",
+    image: "/profile 18.png",
+    quote:
+      "I am very happy with the brick making machine from Ali Enterprises. It is user-friendly and delivers consistent, high-quality bricks every time.",
+    role: "Owner",
+  },
+  {
+    name: "Kuldeep Singh",
+    image: "/profile 19.png",
+    quote:
+      "The machine has completely transformed our brick production process. It is robust, efficient, and the support from the team is excellent.",
+    role: "MD",
+  },
+  {
+    name: "Manoj Kumar",
+    image: "/profile 20.png",
+    quote:
+      "Ali Enterprises' brick making machine is top-notch. It has made our operations smoother and more productive, and the service is excellent.",
+    role: "Owner",
   },
 ];
 

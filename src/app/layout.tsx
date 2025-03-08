@@ -21,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <>
       <html lang="en">
         <Head>
-          {/* Updated favicon paths */}
+          {/* Favicon */}
           <link rel="icon" href="/favicon_io/favicon.ico" />
           <link
             rel="icon"
@@ -37,7 +37,34 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           />
           <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png" />
           <meta name="theme-color" content="#ffffff" />
+          
+          {/* Site Title */}
           <title>Ali Enterprises</title>
+          
+          {/* Global Meta Tags for SEO */}
+          <meta
+            name="description"
+            content="Ali Enterprises offers top-quality machinery and industrial solutions for your business needs."
+          />
+          
+          {/* Open Graph Meta Tags for Social Sharing */}
+          <meta property="og:title" content="Ali Enterprises" />
+          <meta
+            property="og:description"
+            content="Ali Enterprises offers top-quality machinery and industrial solutions for your business needs."
+          />
+          <meta property="og:image" content="https://alienterprises.in/path-to-your-og-image.jpg" />
+          <meta property="og:url" content="https://alienterprises.in" />
+          <meta property="og:type" content="website" />
+          
+          {/* Twitter Card Meta Tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Ali Enterprises" />
+          <meta
+            name="twitter:description"
+            content="Ali Enterprises offers top-quality machinery and industrial solutions for your business needs."
+          />
+          <meta name="twitter:image" content="https://alienterprises.in/path-to-your-og-image.jpg" />
         </Head>
         <body className="min-h-screen bg-background text-foreground">
           <Navbar />

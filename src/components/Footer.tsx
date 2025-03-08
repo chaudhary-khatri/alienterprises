@@ -10,7 +10,12 @@ const Footer: React.FC = () => {
       <div className="max-w-screen-xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
-          <div className="flex flex-col items-center md:items-start">
+          <div
+            onClick={() =>
+              window.scrollTo({ top: 0, behavior: "smooth" })
+            }
+            className="flex flex-col items-center md:items-start cursor-pointer"
+          >
             <Image
               src="/logo.svg"
               alt="Ali Enterprises Logo"
@@ -23,6 +28,7 @@ const Footer: React.FC = () => {
               GIVING SMARTNESS TO YOUR BUSINESS
             </p>
           </div>
+
 
           {/* Quick Links */}
           <div className="text-center md:text-left">
@@ -109,7 +115,7 @@ const Footer: React.FC = () => {
                 </svg>
               </Link>
               <Link
-                href="https://www.instagram.com/alienterprises"
+                href="https://www.instagram.com/alienterprises_/"
                 className="text-white hover:text-yellow-500 transition-colors"
                 aria-label="Instagram"
                 target="_blank"

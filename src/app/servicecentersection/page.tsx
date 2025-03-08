@@ -1,56 +1,61 @@
-"use client"; // Ensures client-side execution
+"use client";
 
 import React, { useState, useCallback } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
+// Updated service centers with new location names and sample addresses/coordinates.
 const serviceCenters = [
-  { city: "Delhi", address: "123 Main Street, Delhi, India", coordinates: [28.6139, 77.2090] },
-  { city: "Mumbai", address: "456 Ocean Drive, Mumbai, India", coordinates: [19.0760, 72.8777] },
-  { city: "Bangalore", address: "789 Tech Park, Bangalore, India", coordinates: [12.9716, 77.5946] },
-  { city: "Chennai", address: "321 South Road, Chennai, India", coordinates: [13.0827, 80.2707] },
-  { city: "Kolkata", address: "654 Eastern Avenue, Kolkata, India", coordinates: [22.5726, 88.3639] },
-  { city: "Ahmedabad", address: "Ahmedabad Center, Gujarat, India", coordinates: [23.0225, 72.5714] },
-  { city: "Hyderabad", address: "Hyderabad Center, Telangana, India", coordinates: [17.3850, 78.4867] },
-  { city: "Pune", address: "Pune Center, Maharashtra, India", coordinates: [18.5204, 73.8567] },
-  { city: "Jaipur", address: "Jaipur Center, Rajasthan, India", coordinates: [26.9124, 75.7873] },
-  { city: "Lucknow", address: "Lucknow Center, Uttar Pradesh, India", coordinates: [26.8467, 80.9462] },
+  {
+    city: "Priyag Raj",
+    address: "101, Allahabad Road, Prayagraj, Uttar Pradesh, India",
+    coordinates: [25.4358, 81.8463],
+  },
+  {
+    city: "Gorakhpur",
+    address: "202, City Center, Gorakhpur, Uttar Pradesh, India",
+    coordinates: [26.7606, 83.3732],
+  },
+  {
+    city: "Patna, Bihar",
+    address: "303, Station Road, Patna, Bihar, India",
+    coordinates: [25.5941, 85.1376],
+  },
+  {
+    city: "Gohathi, Assam",
+    address: "404, Market Road, Gohathi, Assam, India",
+    coordinates: [26.1445, 91.7362],
+  },
 ];
 
 const MapController = React.memo(({ coordinates }: { coordinates: [number, number] | null }) => {
   const map = useMap();
-  // Only update map if valid coordinates are provided
   if (coordinates) {
     map.setView(coordinates, 10, { animate: true });
   }
   return null;
 });
-
 MapController.displayName = "MapController";
 
 const MemoizedMap = React.memo(({ selectedCoordinates }: { selectedCoordinates: [number, number] | null }) => (
   <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[400px] rounded-2xl overflow-hidden shadow-lg">
     <MapContainer
-      center={[22.5937, 78.9629]} // Center of India
+      center={[25.4358, 81.8463]} // Center around Prayagraj as a reference point.
       zoom={4}
-      style={{
-        width: "100%",
-        height: "100%",
-        zIndex: 0, // Ensures it stays below any floating elements
-      }}
+      style={{ width: "100%", height: "100%", zIndex: 0 }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         tileSize={256}
         zoomOffset={0}
-        detectRetina={true} // Enable Retina display support
+        detectRetina={true}
       />
       {serviceCenters.map((center, index) => (
         <Marker
           key={index}
-          position={[center.coordinates[0], center.coordinates[1]]}  // Ensure it's a [lat, lon] tuple
+          position={[center.coordinates[0], center.coordinates[1]]}
           icon={
             new Icon({
               iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
@@ -71,7 +76,6 @@ const MemoizedMap = React.memo(({ selectedCoordinates }: { selectedCoordinates: 
     </MapContainer>
   </div>
 ));
-
 MemoizedMap.displayName = "MemoizedMap";
 
 const ServiceCentersSection = () => {
@@ -125,9 +129,7 @@ const ServiceCentersSection = () => {
             )}
           </div>
           <div className="flex-1 relative">
-            <div className="w-full h-64 sm:h-80 md:h-96 lg:h-[400px] rounded-2xl overflow-hidden">
-              <MemoizedMap selectedCoordinates={selectedCoordinates} />
-            </div>
+            <MemoizedMap selectedCoordinates={selectedCoordinates} />
           </div>
         </div>
       </div>

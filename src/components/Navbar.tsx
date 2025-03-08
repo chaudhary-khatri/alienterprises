@@ -1,13 +1,38 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const [activeHash, setActiveHash] = useState("");
+
+  // Update active hash when window.location.hash changes.
+  useEffect(() => {
+    const updateHash = () => setActiveHash(window.location.hash);
+    updateHash();
+    window.addEventListener("hashchange", updateHash);
+    return () => window.removeEventListener("hashchange", updateHash);
+  }, []);
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
+
+  // Function to conditionally apply active styling.
+  const getLinkClasses = (href: string) => {
+    // For hash links:
+    if (href.startsWith("#")) {
+      return `transition-colors hover:text-yellow-500 ${
+        activeHash === href ? "text-yellow-500 font-bold" : ""
+      }`;
+    }
+    // For full page routes:
+    return `transition-colors hover:text-yellow-500 ${
+      pathname === href ? "text-yellow-500 font-bold" : ""
+    }`;
+  };
 
   return (
     <nav className="fixed w-full bg-teal-700 text-white shadow-md z-50">
@@ -20,16 +45,16 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8">
-          <Link href="#about" className="transition-colors hover:text-yellow-500">
+          <Link href="#about" className={getLinkClasses("#about")}>
             About
           </Link>
-          <Link href="#products" className="transition-colors hover:text-yellow-500">
+          <Link href="#products" className={getLinkClasses("#products")}>
             Products
           </Link>
-          <Link href="/terms" className="transition-colors hover:text-yellow-500">
+          <Link href="/terms" className={getLinkClasses("/terms")}>
             Terms &amp; Conditions
           </Link>
-          <Link href="/contactus" className="transition-colors hover:text-yellow-500">
+          <Link href="/contactus" className={getLinkClasses("/contactus")}>
             Contact
           </Link>
         </div>
@@ -74,16 +99,32 @@ const Navbar: React.FC = () => {
         }`}
       >
         <div className="px-4 py-2 flex flex-col space-y-2">
-          <Link href="#about" className="block py-2 transition-colors hover:text-yellow-500" onClick={toggleMenu}>
+          <Link
+            href="#about"
+            className={`block py-2 ${getLinkClasses("#about")}`}
+            onClick={toggleMenu}
+          >
             About
           </Link>
-          <Link href="#products" className="block py-2 transition-colors hover:text-yellow-500" onClick={toggleMenu}>
+          <Link
+            href="#products"
+            className={`block py-2 ${getLinkClasses("#products")}`}
+            onClick={toggleMenu}
+          >
             Products
           </Link>
-          <Link href="/terms" className="block py-2 transition-colors hover:text-yellow-500" onClick={toggleMenu}>
+          <Link
+            href="/terms"
+            className={`block py-2 ${getLinkClasses("/terms")}`}
+            onClick={toggleMenu}
+          >
             Terms &amp; Conditions
           </Link>
-          <Link href="/contactus" className="block py-2 transition-colors hover:text-yellow-500" onClick={toggleMenu}>
+          <Link
+            href="/contactus"
+            className={`block py-2 ${getLinkClasses("/contactus")}`}
+            onClick={toggleMenu}
+          >
             Contact
           </Link>
         </div>

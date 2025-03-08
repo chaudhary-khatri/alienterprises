@@ -50,7 +50,7 @@ const conversationConfig: Record<string, ChatNode> = {
       {
         text: "Buy online",
         action: () =>
-          (window.location.href = "https://forms.gle/ky2v5pjAUiVvZydw7"),
+          (window.location.href = "https://forms.gle/LQwMAdZdsjA54Ytn8"),
       },
       {
         text: "Get store details",
@@ -61,22 +61,19 @@ const conversationConfig: Record<string, ChatNode> = {
   },
   "machine-models": {
     id: "machine-models",
-    text: "We offer the 3 Brick Making machine models: 1. Single Die, 2. Double die, and 3. Triple Die. Which model would you like to know more about?",
+    text: "We offer three Brick Making machine models: 1. Double Die, 2. Triple Die, and 3. Five Die. Which model would you like to know more about?",
     options: [
       {
         text: "Double Die Machine",
-        action: () =>
-          (window.location.href = "/productsection/products?model=model1"),
+        action: () => window.location.href = "/productsection/products?model=1"
       },
       {
         text: "Triple Die Machine",
-        action: () =>
-          (window.location.href = "/productsection/products?model=model2"),
+        action: () => window.location.href = "/productsection/products?model=2"
       },
       {
         text: "Five Die Machine",
-        action: () =>
-          (window.location.href = "/productsection/products?model=model3"),
+        action: () => window.location.href = "/productsection/products?model=3"
       },
     ],
   },
@@ -138,8 +135,8 @@ const conversationConfig: Record<string, ChatNode> = {
       {
         text: "See Video Demo about your products",
         action: () =>
-          (window.location.href =
-            "https://www.youtube.com/@alienterprises7509/videos"),
+        (window.location.href =
+          "https://www.youtube.com/@alienterprises7509/videos"),
       },
       { text: "See models", nextNodeId: "machine-models" },
     ],
@@ -238,11 +235,10 @@ const ChatBot = ({ onClose }: { onClose: () => void }) => {
               className={`flex ${message.isBot ? "justify-start" : "justify-end"}`}
             >
               <div
-                className={`max-w-[80%] p-2 rounded-lg ${
-                  message.isBot
-                    ? "bg-white text-gray-800 border border-gray-200"
-                    : "bg-teal-600 text-white"
-                }`}
+                className={`max-w-[80%] p-2 rounded-lg ${message.isBot
+                  ? "bg-white text-gray-800 border border-gray-200"
+                  : "bg-teal-600 text-white"
+                  }`}
               >
                 <p className="text-xs sm:text-sm">{message.content}</p>
                 <span className="text-[0.6rem] sm:text-xs mt-1 block opacity-70">

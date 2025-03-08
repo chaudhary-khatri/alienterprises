@@ -61,17 +61,17 @@ const slides: Slide[] = [
   },
   {
     type: "image",
-    src: "/Launching Soon.png",
+    src: "/hero/hero1.jpg",
     alt: "New Product Launch",
   },
   {
     type: "image",
-    src: "/Discount.png",
+    src: "/hero/hero2.jpg",
     alt: "Special Discount Offer",
   },
   {
     type: "text",
-    title: "Special Offer: Get 20% Off!",
+    title: "Get 20% Off on Our all product if you book machine today !",
     description: "Limited time offer on our best-selling products.",
   },
 ];

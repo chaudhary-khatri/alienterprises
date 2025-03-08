@@ -2,10 +2,10 @@
   {
     "id": "1",
     "name": "Double Die",
-    "description": "This is tractor PTO-operated, movable clay brick-making machine is a highly efficient solution for producing large quantities of bricks with minimal manpower. Built for convenience and mobility, this machine is perfect for projects requiring high output.",
+    "description": "Double Die is a mobile, tractor-powered clay brick-making machine built for high-output production with minimal manpower. Operating efficiently with a 55-60 HP tractor and a crew of just 4-5 workers, it produces 4,000 to 6,000 high-quality bricks per hour. It works best on a flat land area of 200-250m x 50-60m using only stone-free mud for consistent quality.",
     "price": 2000000,
     "images": [
-      "/machines/product2.jpg"
+      "/machines/doubledie1.jpg"
     ],
     "specs": {
       "Operational Requirements": [
@@ -26,11 +26,15 @@
   {
     "id": "2",
     "name": "Triple Die",
-    "description": "This is tractor PTO-operated, movable clay brick-making machine is a highly efficient solution for producing large quantities of bricks with minimal manpower. Built for convenience and mobility, this machine is perfect for projects requiring high output.",
+    "description": "Triple Die is an advanced, tractor PTO-operated brick-making machine designed for increased productivity. It efficiently runs on a 55-60 HP tractor with only 2-3 workers and can churn out 6,000 to 9,000 bricks per hour. With a compact land requirement (200-250m x 50-60m) and strict material standards using only stone-free mud, Triple Die is ideal for projects demanding higher output and superior quality.",
     "price": 2600000,
     "images": [
-      "/machines/Triplediefront.jpg",
-      "/machines/Tripledieside1.jpg"
+      "/machines/tripledie1.jpg",
+      "/machines/tripledie2.jpg",
+      "/machines/tripledie3.jpg",
+      "/machines/tripledie4.jpg",
+      "/machines/tripledie5.jpg",
+      "/machines/tripledie6.jpg"
     ],
     "specs": {
       "Operational Requirements": [
@@ -51,12 +55,10 @@
   {
     "id": "3",
     "name": "Five Die",
-    "description": "This is tractor PTO-operated, movable clay brick-making machine is a highly efficient solution for producing large quantities of bricks with minimal manpower. Built for convenience and mobility, this machine is perfect for projects requiring high output.",
+    "description": "Five Die is a high-capacity, tractor-powered brick-making machine engineered for mass production. It runs on a 60+ HP tractor with only 2 workers and can produce an astounding 12,000 to 14,000 bricks per hour. Requiring a larger flat area (250-300m x 60-70m) and using strictly stone-free mud, Five Die is built for industrial-scale projects demanding outstanding efficiency and consistent brick quality.",
     "price": 4200000,
     "images": [
-      "/machines/product1.jpg",
-      "/machines/product2.jpg",
-      "/machines/product3.jpg"
+      "/machines/fivedie1.jpg"
     ],
     "specs": {
       "Operational Requirements": [
