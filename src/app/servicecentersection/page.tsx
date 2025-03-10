@@ -8,7 +8,7 @@ import "leaflet/dist/leaflet.css";
 // Updated service centers with new location names and sample addresses/coordinates.
 const serviceCenters = [
   {
-    city: "Priyag Raj",
+    city: "Prayagraj",
     address: "101, Allahabad Road, Prayagraj, Uttar Pradesh, India",
     coordinates: [25.4358, 81.8463],
   },
@@ -18,14 +18,24 @@ const serviceCenters = [
     coordinates: [26.7606, 83.3732],
   },
   {
-    city: "Patna, Bihar",
-    address: "303, Station Road, Patna, Bihar, India",
-    coordinates: [25.5941, 85.1376],
+    city: "Sultanpur",
+    address: "123, Main Road, Sultanpur, Uttar Pradesh, India",
+    coordinates: [26.26, 82.08],
   },
   {
-    city: "Gohathi, Assam",
-    address: "404, Market Road, Gohathi, Assam, India",
-    coordinates: [26.1445, 91.7362],
+    city: "Mirzapur",
+    address: "456, Market Road, Mirzapur, Uttar Pradesh, India",
+    coordinates: [25.15, 82.58],
+  },
+  {
+    city: "Sasaram",
+    address: "789, Station Road, Sasaram, Bihar, India",
+    coordinates: [25.04, 84.18],
+  },
+  {
+    city: "Pratapgarh",
+    address: "101, Service Center, Pratapgarh, Uttar Pradesh, India",
+    coordinates: [25.91, 81.82],
   },
 ];
 

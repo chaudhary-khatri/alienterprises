@@ -153,6 +153,29 @@ const HomePage = () => {
             <MessageCircle className="w-6 h-6" />
             <span className="hidden sm:inline font-semibold text-lg">Chat Support</span>
           </motion.button>
+
+          {/* WhatsApp Support Button using inline SVG */}
+          <motion.a
+            href="https://wa.me/919756300040?text=Hello%2C%20I%20need%20support"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300"
+            aria-label="WhatsApp support"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M20.52 3.48A11.923 11.923 0 0012 0C5.373 0 0 5.373 0 12c0 2.123.555 4.136 1.605 5.928L0 24l6.208-1.635A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12 0-3.202-1.249-6.187-3.48-8.52zM12 21.452a9.41 9.41 0 01-4.764-1.312l-.342-.204-3.689.972.982-3.628-.223-.364A9.417 9.417 0 012.548 12c0-5.22 4.231-9.452 9.452-9.452 2.533 0 4.91.99 6.696 2.786A9.419 9.419 0 0121.452 12c0 5.22-4.231 9.452-9.452 9.452zm5.496-7.927c-.308-.154-1.824-.901-2.105-1.005-.28-.104-.485-.154-.69.154-.204.308-.788 1.005-.967 1.208-.18.203-.36.229-.668.083-.308-.154-1.303-.48-2.48-1.525-.916-.812-1.535-1.816-1.713-2.124-.18-.308-.02-.474.135-.627.138-.138.308-.36.462-.54.154-.18.205-.308.308-.513.103-.205.052-.384-.026-.538-.078-.154-.69-1.67-.95-2.288-.25-.602-.504-.521-.69-.53l-.59-.01c-.205 0-.54.077-.824.384-.284.308-1.08 1.055-1.08 2.573 0 1.518 1.105 2.98 1.26 3.185.155.205 2.177 3.33 5.275 4.66.738.318 1.312.507 1.76.647.738.233 1.408.2 1.94.121.593-.09 1.824-.744 2.083-1.46.26-.716.26-1.328.182-1.46-.078-.132-.28-.208-.588-.362z" />
+            </svg>
+            <span className="hidden sm:inline font-semibold text-lg">
+              WhatsApp
+            </span>
+          </motion.a>
         </motion.div>
       )}
     </motion.div>

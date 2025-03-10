@@ -10,7 +10,7 @@ interface Product {
   id: string;
   name: string;
   description: string;
-  price: number;
+  price: string; // Updated: now a string instead of number
   images: string[];
   specs: {
     [category: string]: string[];
@@ -44,7 +44,7 @@ export default function ProductsList() {
       const data: Product[] = await response.json();
       const validatedData = data.map((product) => ({
         ...product,
-        price: typeof product.price === "number" ? product.price : 0,
+        // Price is already a string from the JSON file.
         images:
           product.images?.length > 0 ? product.images : ["/default-image.jpg"],
       }));
@@ -71,7 +71,6 @@ export default function ProductsList() {
     }
   }, [modelId, products]);
 
-  // Removed the unused 'product' parameter from handleBookNow
   const handleBookNow = () => {
     window.open(GOOGLE_FORM_URL, "_blank", "noopener,noreferrer");
   };
@@ -83,7 +82,7 @@ export default function ProductsList() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-4xl font-bold text-gray-900 mb-12 text-center">
         {modelId ? "Product Details" : "Our Machinery"}
-        {!modelId && <span className="text-teal-600"> Machinery</span>}
+        {!modelId && <span className="text-teal-600"> Models</span>}
       </h1>
 
       <div className="grid grid-cols-1 gap-12">
@@ -295,7 +294,7 @@ const ProductCard = ({
                 Excl. GST:
               </span>
               <span className="text-2xl font-bold text-teal-700">
-                ₹{(product.price ?? 0).toLocaleString()}
+                ₹{product.price}
               </span>
             </div>
           </div>

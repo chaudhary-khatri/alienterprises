@@ -6,7 +6,7 @@ import React, {
   useRef,
   useCallback,
   useReducer,
-  memo
+  memo,
 } from "react";
 import Image from "next/image";
 import Player from "@vimeo/player";
@@ -192,15 +192,6 @@ const VimeoSlideContent = ({ slide, onVideoStatusChange }: VimeoSlideContentProp
       className="w-full h-full relative aspect-[4/3] lg:aspect-video"
       onClick={togglePlayPause}
     >
-      {(!videoStarted || !isLoaded) && (
-        <Image
-          src={slide.thumbnail}
-          alt={slide.alt}
-          fill
-          className="object-cover"
-          priority
-        />
-      )}
       {isLoaded && (
         <iframe
           ref={iframeRef}
@@ -210,25 +201,34 @@ const VimeoSlideContent = ({ slide, onVideoStatusChange }: VimeoSlideContentProp
           allowFullScreen
         />
       )}
-      {/* Overlay Icon */}
+      {/* When video is paused or not started, overlay the thumbnail and play button */}
       {(!videoStarted || !isPlaying) && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              togglePlayPause();
-            }}
-            className="bg-black bg-opacity-50 rounded-full p-3"
-          >
-            <svg
-              className="w-12 h-12 text-white"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
+        <div className="absolute inset-0 z-20">
+          <Image
+            src={slide.thumbnail}
+            alt={slide.alt}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                togglePlayPause();
+              }}
+              className="bg-black bg-opacity-50 rounded-full p-3"
             >
-              <polygon points="5,3 19,12 5,21" />
-            </svg>
-          </button>
+              <svg
+                className="w-12 h-12 text-white"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polygon points="5,3 19,12 5,21" />
+              </svg>
+            </button>
+          </div>
         </div>
       )}
     </div>
@@ -318,7 +318,7 @@ const useTouchSwiping = (
 const NavigationControls = ({
   onSlideChange,
 }: {
-  onSlideChange: (direction: "prev" | "next") => void;
+  onSlideChange: (direction: "prev" | "next" | number) => void;
 }) => (
   <>
     <button

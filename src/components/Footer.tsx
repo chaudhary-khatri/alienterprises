@@ -198,7 +198,7 @@ const Footer: React.FC = () => {
           <p className="text-sm text-gray-200 mt-2">
             Developed by{" "}
             <Link
-              href="https://www.instagram.com/alphabitai"
+              href="https://www.alphabinet.com"
               className="text-yellow-500 hover:text-yellow-400"
               target="_blank"
               rel="noopener noreferrer"

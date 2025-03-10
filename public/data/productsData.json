@@ -3,7 +3,7 @@
     "id": "1",
     "name": "Double Die",
     "description": "Double Die is a mobile, tractor-powered clay brick-making machine built for high-output production with minimal manpower. Operating efficiently with a 55-60 HP tractor and a crew of just 4-5 workers, it produces 4,000 to 6,000 high-quality bricks per hour. It works best on a flat land area of 200-250m x 50-60m using only stone-free mud for consistent quality.",
-    "price": 2000000,
+    "price": " 16 Lakhs  - 20 Lakhs ",
     "images": [
       "/machines/doubledie1.jpg"
     ],
@@ -27,7 +27,7 @@
     "id": "2",
     "name": "Triple Die",
     "description": "Triple Die is an advanced, tractor PTO-operated brick-making machine designed for increased productivity. It efficiently runs on a 55-60 HP tractor with only 2-3 workers and can churn out 6,000 to 9,000 bricks per hour. With a compact land requirement (200-250m x 50-60m) and strict material standards using only stone-free mud, Triple Die is ideal for projects demanding higher output and superior quality.",
-    "price": 2600000,
+    "price": " 22 Lakhs - 26 Lakhs ",
     "images": [
       "/machines/tripledie1.jpg",
       "/machines/tripledie2.jpg",
@@ -56,7 +56,7 @@
     "id": "3",
     "name": "Five Die",
     "description": "Five Die is a high-capacity, tractor-powered brick-making machine engineered for mass production. It runs on a 60+ HP tractor with only 2 workers and can produce an astounding 12,000 to 14,000 bricks per hour. Requiring a larger flat area (250-300m x 60-70m) and using strictly stone-free mud, Five Die is built for industrial-scale projects demanding outstanding efficiency and consistent brick quality.",
-    "price": 4200000,
+    "price": " 40 Lakhs - 45 Lakhs ",
     "images": [
       "/machines/fivedie1.jpg"
     ],
