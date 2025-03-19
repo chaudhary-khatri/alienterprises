@@ -1,38 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
-  const [activeHash, setActiveHash] = useState("");
-
-  // Update active hash when window.location.hash changes.
-  useEffect(() => {
-    const updateHash = () => setActiveHash(window.location.hash);
-    updateHash();
-    window.addEventListener("hashchange", updateHash);
-    return () => window.removeEventListener("hashchange", updateHash);
-  }, []);
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
-  // Function to conditionally apply active styling.
-  const getLinkClasses = (href: string) => {
-    // For hash links:
-    if (href.startsWith("#")) {
-      return `transition-colors hover:text-yellow-500 ${
-        activeHash === href ? "text-yellow-500 font-bold" : ""
-      }`;
-    }
-    // For full page routes:
-    return `transition-colors hover:text-yellow-500 ${
-      pathname === href ? "text-yellow-500 font-bold" : ""
-    }`;
-  };
+  // Return a static class string for desktop links.
+  const getLinkClasses = () => "transition-colors hover:text-yellow-500";
 
   return (
     <nav className="fixed w-full bg-teal-700 text-white shadow-md z-50">
@@ -45,16 +23,16 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8">
-          <Link href="#about" className={getLinkClasses("#about")}>
+          <Link href="#about" className={getLinkClasses()}>
             About
           </Link>
-          <Link href="#products" className={getLinkClasses("#products")}>
+          <Link href="#products" className={getLinkClasses()}>
             Products
           </Link>
-          <Link href="/terms" className={getLinkClasses("/terms")}>
+          <Link href="/terms" className={getLinkClasses()}>
             Terms &amp; Conditions
           </Link>
-          <Link href="/contactus" className={getLinkClasses("/contactus")}>
+          <Link href="/contactus" className={getLinkClasses()}>
             Contact
           </Link>
         </div>
@@ -75,7 +53,12 @@ const Navbar: React.FC = () => {
                 stroke="currentColor"
                 className="w-6 h-6"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             ) : (
               <svg
@@ -85,7 +68,12 @@ const Navbar: React.FC = () => {
                 stroke="currentColor"
                 className="w-6 h-6"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             )}
           </button>
@@ -94,35 +82,35 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden bg-teal-700 transition-all duration-300 overflow-hidden ${
-          isOpen ? "max-h-96" : "max-h-0"
+        className={`md:hidden bg-teal-800 transition-all duration-300 overflow-hidden ${
+          isOpen ? "max-h-screen" : "max-h-0"
         }`}
       >
-        <div className="px-4 py-2 flex flex-col space-y-2">
+        <div className="px-4 py-4 flex flex-col space-y-2">
           <Link
             href="#about"
-            className={`block py-2 ${getLinkClasses("#about")}`}
+            className="block py-2 px-4 rounded border border-white hover:bg-teal-700 transition-colors hover:text-yellow-500"
             onClick={toggleMenu}
           >
             About
           </Link>
           <Link
             href="#products"
-            className={`block py-2 ${getLinkClasses("#products")}`}
+            className="block py-2 px-4 rounded border border-white hover:bg-teal-700 transition-colors hover:text-yellow-500"
             onClick={toggleMenu}
           >
             Products
           </Link>
           <Link
             href="/terms"
-            className={`block py-2 ${getLinkClasses("/terms")}`}
+            className="block py-2 px-4 rounded border border-white hover:bg-teal-700 transition-colors hover:text-yellow-500"
             onClick={toggleMenu}
           >
             Terms &amp; Conditions
           </Link>
           <Link
             href="/contactus"
-            className={`block py-2 ${getLinkClasses("/contactus")}`}
+            className="block py-2 px-4 rounded border border-white hover:bg-teal-700 transition-colors hover:text-yellow-500"
             onClick={toggleMenu}
           >
             Contact
