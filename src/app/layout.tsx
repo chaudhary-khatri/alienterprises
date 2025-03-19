@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Navbar from "@/components/Navbar"; // Adjust the path if needed
 import Footer from "@/components/Footer"; // Adjust the path if needed
-import { SpeedInsights } from "@vercel/speed-insights/next"; // Import SpeedInsights
+import { Analytics } from "@vercel/analytics/react"; // Import Vercel Analytics
 import "./globals.css";
 
 interface LayoutProps {
@@ -32,8 +32,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
           {/* Favicon */}
           <link rel="icon" href="/favicon_io/favicon.ico" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon_io/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon_io/favicon-16x16.png"
+          />
           <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png" />
           <meta name="theme-color" content="#ffffff" />
 
@@ -52,7 +62,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             property="og:description"
             content="Ali Enterprises offers top-quality machinery and industrial solutions for your business needs."
           />
-          <meta property="og:image" content="https://alienterprises.in/path-to-your-og-image.jpg" />
+          <meta
+            property="og:image"
+            content="https://alienterprises.in/path-to-your-og-image.jpg"
+          />
           <meta property="og:url" content="https://alienterprises.in" />
           <meta property="og:type" content="website" />
 
@@ -63,7 +76,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             name="twitter:description"
             content="Ali Enterprises offers top-quality machinery and industrial solutions for your business needs."
           />
-          <meta name="twitter:image" content="https://alienterprises.in/path-to-your-og-image.jpg" />
+          <meta
+            name="twitter:image"
+            content="https://alienterprises.in/path-to-your-og-image.jpg"
+          />
 
           {/* Structured Data for Organization (JSON-LD) */}
           <script
@@ -106,7 +122,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <Navbar />
           <main className="pt-10">{isClient ? children : null}</main>
           <Footer />
-          <SpeedInsights /> {/* Add SpeedInsights at the bottom */}
+          <Analytics /> {/* Vercel Analytics for tracking traffic */}
         </body>
       </html>
     </>
