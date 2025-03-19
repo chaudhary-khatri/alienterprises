@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Navbar from "@/components/Navbar"; // Adjust the path if needed
 import Footer from "@/components/Footer"; // Adjust the path if needed
+import { SpeedInsights } from "@vercel/speed-insights/next"; // Import SpeedInsights
 import "./globals.css";
 
 interface LayoutProps {
@@ -105,6 +106,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <Navbar />
           <main className="pt-10">{isClient ? children : null}</main>
           <Footer />
+          <SpeedInsights /> {/* Add SpeedInsights at the bottom */}
         </body>
       </html>
     </>
