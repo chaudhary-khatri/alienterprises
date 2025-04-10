@@ -18,8 +18,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     setIsClient(true);
   }, []);
 
-  // Get the GA measurement ID from the environment variable
-  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  // Get the GA measurement ID from the environment variable,
+  // fallback to the hardcoded value for debugging if not set
+  const measurementId =
+    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-R6B186WMDW";
+
+  // Debug: Log GA Measurement ID
+  useEffect(() => {
+    console.log("GA Measurement ID:", measurementId);
+  }, [measurementId]);
 
   return (
     <>
