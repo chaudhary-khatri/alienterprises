@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import Script from "next/script";
 import Navbar from "@/components/Navbar"; // Adjust the path if needed
 import Footer from "@/components/Footer"; // Adjust the path if needed
 import { Analytics } from "@vercel/analytics/react"; // Import Vercel Analytics
@@ -98,31 +99,34 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               }),
             }}
           />
+        </Head>
 
-          {/* Google Analytics */}
+        <body className="min-h-screen bg-background text-foreground">
+          {/* Navbar */}
+          <Navbar />
+
+          {/* Google Analytics Setup using Next.js Script Component */}
           {measurementId && (
             <>
-              <script
-                async
+              {/* Load GA Script */}
+              <Script
+                strategy="afterInteractive"
                 src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-              ></script>
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `
-                      window.dataLayer = window.dataLayer || [];
-                      function gtag(){dataLayer.push(arguments);}
-                      gtag('js', new Date());
-                      gtag('config', '${measurementId}', {
-                        page_path: window.location.pathname,
-                      });
-                    `,
-                }}
               />
+              {/* Initialize GA */}
+              <Script id="google-analytics" strategy="afterInteractive">
+                {`
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${measurementId}', {
+                    page_path: window.location.pathname,
+                  });
+                `}
+              </Script>
             </>
           )}
-        </Head>
-        <body className="min-h-screen bg-background text-foreground">
-          <Navbar />
+
           <main className="pt-10">{isClient ? children : null}</main>
           <Footer />
           <Analytics /> {/* Vercel Analytics for tracking traffic */}
