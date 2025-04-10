@@ -23,6 +23,9 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8">
+          <Link href="/" className={getLinkClasses()}>
+            Home
+          </Link>
           <Link href="#about" className={getLinkClasses()}>
             About
           </Link>
@@ -88,29 +91,36 @@ const Navbar: React.FC = () => {
       >
         <div className="px-4 py-4 flex flex-col space-y-2">
           <Link
+            href="/"
+            className="block py-2 px-4 rounded bg-teal-600 border border-teal-900 hover:bg-teal-700 transition-colors hover:text-yellow-500"
+            onClick={toggleMenu}
+          >
+            Home
+          </Link>
+          <Link
             href="#about"
-            className="block py-2 px-4 rounded border border-white hover:bg-teal-700 transition-colors hover:text-yellow-500"
+            className="block py-2 px-4 rounded bg-teal-600 border border-teal-900 hover:bg-teal-700 transition-colors hover:text-yellow-500"
             onClick={toggleMenu}
           >
             About
           </Link>
           <Link
             href="#products"
-            className="block py-2 px-4 rounded border border-white hover:bg-teal-700 transition-colors hover:text-yellow-500"
+            className="block py-2 px-4 rounded bg-teal-600 border border-teal-900 hover:bg-teal-700 transition-colors hover:text-yellow-500"
             onClick={toggleMenu}
           >
             Products
           </Link>
           <Link
             href="/terms"
-            className="block py-2 px-4 rounded border border-white hover:bg-teal-700 transition-colors hover:text-yellow-500"
+            className="block py-2 px-4 rounded bg-teal-600 border border-teal-900 hover:bg-teal-700 transition-colors hover:text-yellow-500"
             onClick={toggleMenu}
           >
             Terms &amp; Conditions
           </Link>
           <Link
             href="/contactus"
-            className="block py-2 px-4 rounded border border-white hover:bg-teal-700 transition-colors hover:text-yellow-500"
+            className="block py-2 px-4 rounded bg-teal-600 border border-teal-900 hover:bg-teal-700 transition-colors hover:text-yellow-500"
             onClick={toggleMenu}
           >
             Contact
