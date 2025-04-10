@@ -30,6 +30,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <meta name="robots" content="index, follow" />
           <link rel="canonical" href="https://alienterprises.in" />
 
+          {/* Sitemap Link */}
+          <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
           {/* Favicon */}
           <link rel="icon" href="/favicon_io/favicon.ico" />
           <link
@@ -106,13 +109,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <script
                 dangerouslySetInnerHTML={{
                   __html: `
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', '${measurementId}', {
-                      page_path: window.location.pathname,
-                    });
-                  `,
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+                      gtag('config', '${measurementId}', {
+                        page_path: window.location.pathname,
+                      });
+                    `,
                 }}
               />
             </>
